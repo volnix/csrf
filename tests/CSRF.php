@@ -1,6 +1,6 @@
 <?php
 
-namespace INA\Security\Tests;
+namespace Volnix\CSRF\Tests;
 use Volnix\CSRF\CSRF as CSRFTokenGenerator;
 
 class CSRF extends \PHPUnit_Framework_TestCase
