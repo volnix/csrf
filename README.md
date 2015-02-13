@@ -1,5 +1,8 @@
 # Volnix\CSRF
 
+[![Build Status](https://img.shields.io/travis/volnix/csrf.svg?style=flat-square)](https://travis-ci.org/volnix/csrf) [![Downloads](https://img.shields.io/packagist/dt/volnix/csrf.svg?style=flat-square)](https://packagist.org/packages/volnix/csrf) [![Latest Stable Version](https://img.shields.io/packagist/v/volnix/csrf.svg?style=flat-square)](https://packagist.org/packages/volnix/csrf) [![Code Coverage](https://img.shields.io/scrutinizer/coverage/g/volnix/csrf.svg?style=flat-square)](https://scrutinizer-ci.com/g/volnix/csrf/?branch=master)
+
+
 CSRF protection library that compares provided token to session token to ensure request validity.  Token values are stored in session and validated against that session store to verify the request.  Tokens are changed on every request so ensure frequently changes and increase the difficulty in guessing the token value.
 
 ### Installation
