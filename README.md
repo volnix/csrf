@@ -40,17 +40,6 @@ Value only:
 	
 <?php
 
-require_once('vendor/autoload.php');
-
-if (\Volnix\CSRF\CSRF::valid()) {
-	// valid request
-}
-else {
-	// invalid CSRF
-}
-
-?>
-
 <form action="index.php" method="post">
 	<input type="hidden" name="<?= \Volnix\CSRF\CSRF::TOKEN_NAME ?>" value="<?= \Volnix\CSRF\CSRF::getToken() ?>"/>
 	<input type="text" name="action" placeholder="Enter an action."/>
