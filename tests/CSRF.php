@@ -11,7 +11,7 @@ class CSRF extends \PHPUnit_Framework_TestCase
 	{
 		ob_start();
 	}
-	
+
 	public function __destruct()
 	{
 		print ob_get_clean();
@@ -30,7 +30,7 @@ class CSRF extends \PHPUnit_Framework_TestCase
 		$this->_killSession();
 		session_write_close();
 	}
-	
+
 	public function testGenerateToken()
 	{
 		CSRFTokenGenerator::generateToken();

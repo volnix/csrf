@@ -113,4 +113,4 @@ class CSRF {
 		return !$hashes_are_not_equal;
 	}
 
-} 
+}
