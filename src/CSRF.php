@@ -37,7 +37,7 @@ class CSRF {
 	public static function getToken($token_name = self::TOKEN_NAME)
 	{
 		if (empty($_SESSION[$token_name])) {
-			self::generateToken($token_name);
+			static::generateToken($token_name);
 		}
 
 		return $_SESSION[$token_name];
@@ -53,12 +53,12 @@ class CSRF {
 	public static function validate($request_data = array(), $token_name = self::TOKEN_NAME)
 	{
 		if (empty($_SESSION[$token_name])) {
-			self::generateToken($token_name);
+			static::generateToken($token_name);
 			return false;
 		} elseif (empty($request_data[$token_name])) {
 			return false;
 		} else {
-			return self::compare($request_data[$token_name], self::getToken($token_name));
+			return static::compare($request_data[$token_name], static::getToken($token_name));
 		}
 	}
 
@@ -70,7 +70,7 @@ class CSRF {
 	 */
 	public static function getHiddenInputString($token_name = self::TOKEN_NAME)
 	{
-		return sprintf('<input type="hidden" name="%s" value="%s"/>', $token_name, self::getToken($token_name));
+		return sprintf('<input type="hidden" name="%s" value="%s"/>', $token_name, static::getToken($token_name));
 	}
 
 	/**
@@ -81,7 +81,7 @@ class CSRF {
 	 */
 	public static function getQueryString($token_name = self::TOKEN_NAME)
 	{
-		return sprintf('%s=%s', $token_name, self::getToken($token_name));
+		return sprintf('%s=%s', $token_name, static::getToken($token_name));
 	}
 
 	/**
