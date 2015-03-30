@@ -11,7 +11,7 @@ class CSRF extends \PHPUnit_Framework_TestCase
 	{
 		ob_start();
 	}
-	
+
 	public function __destruct()
 	{
 		print ob_get_clean();
@@ -30,7 +30,7 @@ class CSRF extends \PHPUnit_Framework_TestCase
 		$this->_killSession();
 		session_write_close();
 	}
-	
+
 	public function testGenerateToken()
 	{
 		CSRFTokenGenerator::generateToken();
@@ -62,22 +62,22 @@ class CSRF extends \PHPUnit_Framework_TestCase
 	public function testValidate()
 	{
 		// good validation
-		$post_data = [CSRFTokenGenerator::TOKEN_NAME => CSRFTokenGenerator::getToken()];
+		$post_data = array(CSRFTokenGenerator::TOKEN_NAME => CSRFTokenGenerator::getToken());
 		$this->assertTrue(CSRFTokenGenerator::validate($post_data));
 
-		$post_data = [self::ALT_TOKEN_NAME => CSRFTokenGenerator::getToken(self::ALT_TOKEN_NAME)];
+		$post_data = array(self::ALT_TOKEN_NAME => CSRFTokenGenerator::getToken(self::ALT_TOKEN_NAME));
 		$this->assertTrue(CSRFTokenGenerator::validate($post_data, self::ALT_TOKEN_NAME));
 
 		// bad validation
 		$this->_killSession();
 
-		$post_data = [CSRFTokenGenerator::TOKEN_NAME => "bad_token_data"];
+		$post_data = array(CSRFTokenGenerator::TOKEN_NAME => "bad_token_data");
 		$this->assertFalse(CSRFTokenGenerator::validate($post_data));
 
-		$post_data = [self::ALT_TOKEN_NAME => "bad_token_data"];
+		$post_data = array(self::ALT_TOKEN_NAME => "bad_token_data");
 		$this->assertFalse(CSRFTokenGenerator::validate($post_data, self::ALT_TOKEN_NAME));
 
-		$post_data = ["bad_token_name" => CSRFTokenGenerator::getToken()];
+		$post_data = array("bad_token_name" => CSRFTokenGenerator::getToken());
 		$this->assertFalse(CSRFTokenGenerator::validate($post_data));
 	}
 

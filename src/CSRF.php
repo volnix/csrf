@@ -50,7 +50,7 @@ class CSRF {
 	 * @param string $token_name - defaults to the default token name
 	 * @return bool
 	 */
-	public static function validate($request_data = [], $token_name = self::TOKEN_NAME)
+	public static function validate($request_data = array(), $token_name = self::TOKEN_NAME)
 	{
 		if (empty($_SESSION[$token_name])) {
 			self::generateToken($token_name);
@@ -113,4 +113,4 @@ class CSRF {
 		return !$hashes_are_not_equal;
 	}
 
-} 
+}
