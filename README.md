@@ -53,7 +53,7 @@ Hidden input string:
 ```php
 
 <form action="index.php" method="post">
-	<?= \Volnix\CSRF\CSRF::getAsHiddenInput() ?>
+	<?= \Volnix\CSRF\CSRF::getHiddenInputString() ?>
 	<input type="text" name="action" placeholder="Enter an action."/>
 	<input type="submit" value="Submit" name="sub"/>
 </form>
