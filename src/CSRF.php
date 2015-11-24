@@ -24,8 +24,8 @@ class CSRF {
 	public static function generateToken($token_name = self::TOKEN_NAME)
 	{
 		// generate as random of a token as possible
-		$salt = !empty($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : uniqid();
-		$_SESSION[$token_name] = sha1(uniqid(sha1($salt), true));
+		$salt   = !empty($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : uniqid();
+		$_SESSION[$token_name]  = sha1(uniqid(sha1($salt), true));
 	}
 
 	/**
@@ -41,6 +41,17 @@ class CSRF {
 		}
 
 		return $_SESSION[$token_name];
+	}
+
+	/**
+	 * Get the token name.  This is just a CRUD method to make your code cleaner.
+	 *
+	 * @param string $token_name
+	 * @return string
+	 */
+	public static function getTokenName($token_name = self::TOKEN_NAME)
+	{
+		return $token_name;
 	}
 
 	/**
@@ -82,6 +93,19 @@ class CSRF {
 	public static function getQueryString($token_name = self::TOKEN_NAME)
 	{
 		return sprintf('%s=%s', $token_name, static::getToken($token_name));
+	}
+
+	/**
+	 * Get an array with the token (useful for form libraries, etc.)
+	 *
+	 * @param string $token_name
+	 * @return array
+	 */
+	public static function getTokenAsArray($token_name = self::TOKEN_NAME)
+	{
+		return array(
+			$token_name => self::getToken($token_name)
+		);
 	}
 
 	/**

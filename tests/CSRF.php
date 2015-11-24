@@ -99,6 +99,12 @@ class CSRF extends \PHPUnit_Framework_TestCase
 		$this->assertEquals(sprintf('%s=%s', self::ALT_TOKEN_NAME, $token), CSRFTokenGenerator::getQueryString(self::ALT_TOKEN_NAME));
 	}
 
+	public function testGetAsArray()
+	{
+		$token  = CSRFTokenGenerator::getToken();
+
+	}
+
 	private function _killSession()
 	{
 		$_SESSION[CSRFTokenGenerator::TOKEN_NAME] = $_SESSION[self::ALT_TOKEN_NAME] = null;
