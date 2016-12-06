@@ -21,7 +21,7 @@ class CSRF {
 	 * @param string $token_name - defaults to the default token name
 	 * @return void
 	 */
-	public static function generateToken($token_name = self::TOKEN_NAME)
+	public static function generateToken($token_name = static::TOKEN_NAME)
 	{
 		// generate as random of a token as possible
 		$salt   = !empty($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : uniqid();
@@ -34,7 +34,7 @@ class CSRF {
 	 * @param string $token_name - defaults to the default token name
 	 * @return string
 	 */
-	public static function getToken($token_name = self::TOKEN_NAME)
+	public static function getToken($token_name = static::TOKEN_NAME)
 	{
 		if (empty($_SESSION[$token_name])) {
 			static::generateToken($token_name);
@@ -49,7 +49,7 @@ class CSRF {
 	 * @param string $token_name
 	 * @return string
 	 */
-	public static function getTokenName($token_name = self::TOKEN_NAME)
+	public static function getTokenName($token_name = static::TOKEN_NAME)
 	{
 		return $token_name;
 	}
@@ -61,7 +61,7 @@ class CSRF {
 	 * @param string $token_name - defaults to the default token name
 	 * @return bool
 	 */
-	public static function validate($request_data = array(), $token_name = self::TOKEN_NAME)
+	public static function validate($request_data = array(), $token_name = static::TOKEN_NAME)
 	{
 		if (empty($_SESSION[$token_name])) {
 			static::generateToken($token_name);
@@ -79,7 +79,7 @@ class CSRF {
 	 * @param string $token_name - defaults to the default token name
 	 * @return string
 	 */
-	public static function getHiddenInputString($token_name = self::TOKEN_NAME)
+	public static function getHiddenInputString($token_name = static::TOKEN_NAME)
 	{
 		return sprintf('<input type="hidden" name="%s" value="%s"/>', $token_name, static::getToken($token_name));
 	}
@@ -90,7 +90,7 @@ class CSRF {
 	 * @param string $token_name - defaults to the default token name
 	 * @return string
 	 */
-	public static function getQueryString($token_name = self::TOKEN_NAME)
+	public static function getQueryString($token_name = static::TOKEN_NAME)
 	{
 		return sprintf('%s=%s', $token_name, static::getToken($token_name));
 	}
@@ -101,10 +101,10 @@ class CSRF {
 	 * @param string $token_name
 	 * @return array
 	 */
-	public static function getTokenAsArray($token_name = self::TOKEN_NAME)
+	public static function getTokenAsArray($token_name = static::TOKEN_NAME)
 	{
 		return array(
-			$token_name => self::getToken($token_name)
+			$token_name => static::getToken($token_name)
 		);
 	}
 
