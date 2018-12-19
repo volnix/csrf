@@ -76,7 +76,7 @@ If a different token name is desired, you may pass it in on any call that retrie
 ```php
 
 <form action="index.php" method="post">
-	<?= \Volnix\CSRF\CSRF::getAsHiddenInput('custom_token_name') ?>
+	<?= \Volnix\CSRF\CSRF::getHiddenInputString('custom_token_name') ?>
 	<input type="text" name="action" placeholder="Enter an action."/>
 	<input type="submit" value="Submit" name="sub"/>
 </form>
