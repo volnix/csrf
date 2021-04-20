@@ -69,12 +69,7 @@ class CSRF {
 		} elseif (empty($request_data[$token_name])) {
 			return false;
 		} else {
-			if(static::compare($request_data[$token_name], static::getToken($token_name))){
-				static::generateToken($token_name);
-				return true;
-			} else {
-				return false;
-			}
+			return static::compare($request_data[$token_name], static::getToken($token_name));
 		}
 	}
 
